@@ -22,9 +22,7 @@ class Settings(BaseSettings):
     DATABASE_URI: PostgresDsn | None = None
 
     @validator("DATABASE_URI", pre=True)
-    def assemble_db_connection(
-        cls, v: str | None, values: Dict[str, Any]
-    ) -> str:
+    def assemble_db_connection(cls, v: str | None, values: Dict[str, Any]) -> str:
         if isinstance(v, str):
             return v
         return PostgresDsn.build(
